@@ -1,8 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import { RouterProvider } from 'react-router-dom'
+import { globalRouters } from '@/router'
+// -   import App from '@/pages/account'
+import { ConfigProvider } from 'antd'
+import { store } from '@/store'
+import { Provider } from 'react-redux'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+//使用mock数据
+import './mock'
+// 引入Ant Design中文语言包
+import zhCN from 'antd/locale/zh_CN'
+// 全局样式
+import '@/common/styles/frame.styl'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <App />
-);
+    <Provider store={store}>
+      <ConfigProvider locale={zhCN}>
+           <RouterProvider router={globalRouters} />
+      </ConfigProvider>
+    </Provider>
+)
